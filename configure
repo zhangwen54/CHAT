@@ -1,0 +1,9 @@
+#!/bin/bash
+if mkdir build;then
+	cd build
+        else cd build;
+fi
+
+cmake ./../
+make
+
