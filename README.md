@@ -16,6 +16,7 @@ clone本项目到Linux系统后，进入CHAT目录，直接执行```./configure`
 
 
 ### 打个草稿
+```
 enum EnMsgType
 {
     LOGIN_MSG = 1,  // 登录消息
@@ -30,6 +31,7 @@ enum EnMsgType
     ADD_GROUP_MSG,    // 加入群组
     GROUP_CHAT_MSG,   // 群聊天
 };
+```
 
 注册：
 {"msgid":4,"name":"zhao wu","password":"123456"}
@@ -48,12 +50,15 @@ from:"zhang san"
 to:3
 msg:"xxxx"
 
+```
 CREATE TABLE `user`(
     `name_id` int NOT NULL,
     `role_id` int NOT NULL,
     PRIMARY KEY(`name_id`,`role_id`)
 )ENGINE=InnoDB;
+```
 
+```
 CREATE TABLE `User` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `name` varchar(50) NOT NULL COMMENT '用户名',
@@ -62,17 +67,23 @@ CREATE TABLE `User` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci 
+```
 
+```
 CREATE TABLE `OfflineMessage` (
   `userid` int NOT NULL COMMENT '用户id',
   `message` varchar(500) NOT NULL COMMENT '离线消息（存储Json字符串）'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci   
+```
 
+```
 CREATE TABLE `FriendId` (
   `userid` int NOT NULL COMMENT '用户id',
   `friend` int NOT NULL COMMENT '好友id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci 
+```
 
+```
 CREATE TABLE `AllGroup` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '组id',
   `groupname` varchar(50) NOT NULL COMMENT '组名称',
@@ -80,13 +91,17 @@ CREATE TABLE `AllGroup` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `groupname` (`groupname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci 
+```
 
+```
 CREATE TABLE `GroupUser` (
   `groupid` int NOT NULL COMMENT '组id',
   `userid` int NOT NULL COMMENT '组员id',
   `grouprole` enum('creator','normal') DEFAULT 'normal' COMMENT '组内角色'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci 
+```
 
+```
 stream{
     upstream MyServer{
         hash $remote_addr consistent;
@@ -102,3 +117,4 @@ stream{
         tcp_nodelay on;
     }
 }
+```
